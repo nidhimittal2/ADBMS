@@ -1,0 +1,8 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE employee SYSTEM "emp.xml.dtd">
+<employee>
+ <empno>100</empno>
+ <ename>Nidhi</ename>
+ <salary>3000</salary>
+ </employee>
+ 

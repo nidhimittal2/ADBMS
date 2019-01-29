@@ -1,0 +1,66 @@
+package com.example.nidhi.pharmaapp;
+
+import android.content.Context;
+import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ViewBillAdapter extends ArrayAdapter<Stock>{
+
+    Context mCtx;
+    int listLayoutRes;
+    List<Stock> stockList;
+    SQLiteDatabase mDatabase;
+    Map<Integer,String> inputValues = new HashMap<Integer,String>();
+    
+    public ViewBillAdapter(Context mCtx, int listLayoutRes, List<Stock> stockList, SQLiteDatabase mDatabase) {
+        super(mCtx, listLayoutRes, stockList);
+
+        this.mCtx = mCtx;
+        this.listLayoutRes = listLayoutRes;
+        this.stockList = stockList;
+        this.mDatabase = mDatabase;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = LayoutInflater.from(mCtx);
+        View view = inflater.inflate(listLayoutRes, null);
+
+        final Stock stock = stockList.get(position);
+
+        TextView textViewProdName = view.findViewById(R.id.prodNameBill);
+
+        TextView textViewMRP = view.findViewById(R.id.mrpBill);
+
+        EditText editbox = view.findViewById(R.id.BoxesBill);
+        String s = editbox.getText().toString().trim();
+
+
+        textViewProdName.setText(String.valueOf(stock.getProduct()));
+
+        textViewMRP.setText(String.valueOf(stock.getmrp()));
+        
+
+
+
+        return view;
+    }
+
+
+}
+
